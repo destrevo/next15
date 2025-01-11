@@ -1,0 +1,46 @@
+/* 
+ I know this is against the law also the file name is wanky,
+ but it's impossible to remove an element's
+ mix-blend-mode from its children, 
+ so I applied this workaround to make the task achievable. 
+ see: https://stackoverflow.com/questions/31629541/remove-mix-blend-mode-from-child-element#:~:text=It's%20impossible%20to%20remove%20an,blend%2Dmode%20from%20its%20children.&text=To%20achieve%20the%20desired%20effect,mix%2Dblend%2Dmode%20set.
+*/
+.main-content {
+  position: relative;
+  width: 1162px;
+  height: 748px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 25px;
+}
+.main-content::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(47, 18, 85, 0.7);
+  border-radius: 20px;
+  mix-blend-mode: plus-lighter;
+}
+
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #a18eae #2e2e2e;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 3px; 
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #fbfbfb00;
+  scrollbar-color: #a18eae #2e2e2e;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #4e405e;
+  border-radius: 12px;
+  border: 2px solid #2e2e2e;
+}

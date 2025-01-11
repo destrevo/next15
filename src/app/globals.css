@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: radial-gradient(202.78% 202.78% at 50.59% 131.78%, #010213 38.37%, #532AC5 54.05%, #DBD6EE 70.47%);
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: radial-gradient(202.78% 202.78% at 50.59% 131.78%, #010213 38.37%, #532AC5 54.05%, #DBD6EE 70.47%);
+    --foreground: #ededed;
+  }
+}
+
+body {
+  height: 100%;
+  width: 100vw;
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+
