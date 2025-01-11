@@ -4,6 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useStore } from "@/app/store/storeContext";
 import { NavOptions } from "./common/types";
+import { styleByWidth } from "../util/styleByWidth";
+import useWindowSize from "../hook/useWindowSize";
 
 interface NavComponentProps {
   options: NavOptions[];
@@ -18,12 +20,23 @@ interface NavComponentProps {
  */
 const SideNav: React.FC<NavComponentProps> = ({ options }): JSX.Element => {
   const { isOpen, toggleNav } = useStore();
+  const width = useWindowSize();
+
+  if (!width) return <></>;
 
   return (
     <div
-      className={` absolute top-0 w-[82px] h-[3000px] bg-[rgba(47,18,85,0.7)] transition-all duration-500 z-10
+      className={styleByWidth(width, {
+        styleSmall: `absolute top-0 w-[82px] h-[3000px] bg-[rgba(47,18,85,1)] transition-all duration-500 z-20
             ${isOpen ? "left-0" : "-left-[78px]"}
-          `}
+          `,
+        styleMedium: `absolute top-0 w-[82px] h-[3000px] bg-[rgba(47,18,85,0.7)] transition-all duration-500 z-10
+            ${isOpen ? "left-0" : "-left-[78px]"}
+          `,
+        styleLarge: `absolute top-0 w-[82px] h-[3000px] bg-[rgba(47,18,85,0.7)] transition-all duration-500 z-10
+            ${isOpen ? "left-0" : "-left-[78px]"}
+          `,
+      })}
     >
       <div className="relative flex justify-center items-center w-full h-[82px]">
         <div

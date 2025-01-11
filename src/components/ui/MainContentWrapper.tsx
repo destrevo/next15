@@ -13,6 +13,7 @@ import {
   MainContentWrapperProps,
 } from "./common/types";
 import useWindowSize from "../hook/useWindowSize";
+import { styleByWidth } from "../util/styleByWidth";
 
 const dropDownOptions: DropDownOptions[] = [
   { label: "All", onClick: () => alert("All") },
@@ -38,14 +39,26 @@ const MainContentWrapper: React.FC<MainContentWrapperProps> = ({
 
   return (
     <div
-      className={`transition-all duration-500 ${isOpen && width <= 1300 ? "pl-[82px]" : "pl-0"}`}
+      className={styleByWidth(width, {
+        styleSmall: `transition-all duration-500`,
+        styleMedium: `transition-all duration-500 ${isOpen ? "pl-[82px]" : "pl-0"}`,
+        styleLarge: `transition-all duration-500 ${isOpen ? "pl-[82px]" : "pl-0"}`,
+      })}
     >
       <main
         className={`w-full h-full flex justify-center items-center pt-7 pr-[10px] pl-[10px]`}
       >
         <section className="main-content">
-          <header className="w-[95%] flex md:flex-row justify-between items-center p-2.5 mt-3.5">
-            <h1 className="font-poppins font-semibold text-4xl leading-tight flex items-center tracking-tight text-white mb-2.5 md:mb-0">
+          <header
+            className={styleByWidth(width, {
+              styleSmall: "w-[95%] flex flex-col items-center p-2.5 mt-3.5",
+              styleMedium:
+                "w-[95%] flex flex-row justify-between items-center p-2.5 mt-3.5",
+              styleLarge:
+                "w-[95%] flex flex-row justify-between items-center p-2.5 mt-3.5",
+            })}
+          >
+            <h1 className="font-poppins font-semibold text-4xl leading-tight flex items-center tracking-tight text-white mb-2.5">
               {pageName}
             </h1>
             <div className="flex items-center">
