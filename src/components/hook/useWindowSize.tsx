@@ -30,7 +30,7 @@ const useWindowSize = (): number | null => {
     }
   }, []);
 
-  return width ?? null; // Return 0 if width is undefined
+  return width ?? null;
 };
 
 export default useWindowSize;
