@@ -1,9 +1,12 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
+/** @type {import('next').NextConfig} */
+const nextConfig: import('next').NextConfig = {
   images: {
     domains: ['s3-alpha-sig.figma.com'],
   },
+  swcMinify: true,
+  experimental: {
+    forceSwcTransforms: true,
+  },
 };
 
-export default nextConfig;
+module.exports = nextConfig;
