@@ -1,3 +1,4 @@
+"use client";
 import { useState, useEffect } from "react";
 
 /**
@@ -13,20 +14,23 @@ import { useState, useEffect } from "react";
  * console.log(width); // Logs the current window width
  */
 const useWindowSize = (): number => {
-  const [width, setWidth] = useState(window.innerWidth);
+  const [width, setWidth] = useState<number | undefined>(undefined);
 
   useEffect(() => {
-    const handleResize = () => {
-      setWidth(window.innerWidth);
-    };
+    if (typeof window !== "undefined") {
+      const handleResize = () => {
+        setWidth(window.innerWidth);
+      };
 
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
+      setWidth(window.innerWidth); // Set initial width
+      window.addEventListener("resize", handleResize);
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
+    }
   }, []);
 
-  return width;
+  return width ?? 0; // Return 0 if width is undefined
 };
 
 export default useWindowSize;
