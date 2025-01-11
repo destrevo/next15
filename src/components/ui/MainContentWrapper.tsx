@@ -34,6 +34,8 @@ const MainContentWrapper: React.FC<MainContentWrapperProps> = ({
   const { isOpen, toggleDropdown } = useStore();
   const width = useWindowSize();
 
+  if (!width) return <></>;
+
   return (
     <div
       className={`transition-all duration-500 ${isOpen && width <= 1300 ? "pl-[82px]" : "pl-0"}`}

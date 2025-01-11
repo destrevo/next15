@@ -7,13 +7,13 @@ import { useState, useEffect } from "react";
  * This hook listens for window resize events and updates the width state
  * accordingly. It returns the current window width.
  *
- * @returns {number} The current window width.
+ * @returns {number | null} The current window width.
  *
  * @example
  * const width = useWindowSize();
  * console.log(width); // Logs the current window width
  */
-const useWindowSize = (): number => {
+const useWindowSize = (): number | null => {
   const [width, setWidth] = useState<number | undefined>(undefined);
 
   useEffect(() => {
@@ -30,7 +30,7 @@ const useWindowSize = (): number => {
     }
   }, []);
 
-  return width ?? 0; // Return 0 if width is undefined
+  return width ?? null; // Return 0 if width is undefined
 };
 
 export default useWindowSize;
